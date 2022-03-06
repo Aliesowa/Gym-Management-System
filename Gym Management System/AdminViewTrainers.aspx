@@ -65,43 +65,32 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped table-bordered">
                       <thead class=" text-primary">
                         <th>
                           Id
                         </th>
+                          <th>
+                          Title
+                        </th>
                         <th>
-                          Name
+                          First Name
+                        </th>
+                          <th>
+                          Other Names
+                        </th>
+                          <th>
+                          Last Name
                         </th>
                         <th>
                           Contact No
                         </th>
                         <th>
-                          Email Id
+                          Email Address
                         </th>
+                        
                         <th>
-                          Gender
-                        </th>
-                        <th>
-                          Salary
-                        </th>
-                        <th>
-                         Date Of Birth
-                        </th>
-                        <th>
-                            Address
-                        </th>
-                        <th>
-                         City
-                        </th>
-                          <th>
-                         State
-                        </th>
-                        <th>
-                          Update
-                        </th>
-                        <th>
-                          Delete
+                         
                         </th>
                       </thead>
                       <tbody>
@@ -117,7 +106,16 @@
                             <%#Eval("trainerid") %>
                           </td>
                           <td>
+                            <%#Eval("Title") %>
+                          </td>
+                            <td>
                             <%#Eval("firstname") %>
+                          </td>
+                            <td>
+                            <%#Eval("othername") %>
+                          </td>
+                            <td>
+                            <%#Eval("lastname") %>
                           </td>
                           <td>
                             <%#Eval("contactno") %>
@@ -125,30 +123,13 @@
                           <td>
                             <%#Eval("email") %>
                           </td>
-                          <td>
-                            <%#Eval("gender") %>
-                          </td>
-                          <td>
-                            <%#Eval("salary") %>
-                          </td>
-                          <td>
-                            <%#Eval("d") %>
-                          </td>
-                          <td>
-                            <%#Eval("address") %>
-                          </td>
-                          <td>
-                            <%#Eval("city") %>
-                          </td>
-                          <td>
-                            <%#Eval("state") %>
-                          </td>
+                         
                          <td>
-                            <a href="AdminUpdateTrainer.aspx?id=<%#Eval("trainerid") %>" class="btn btn-primary">Update</a>
+                            <a href="AdminUpdateTrainer.aspx?id=<%#Eval("trainerid") %>" class="btn btn-Secondary">Details</a>
                         </td>
-                        <td>
+                       <%-- <td>
                             <a href="AdminDelete.aspx?type=Trainer&id=<%#Eval("trainerid") %>" class="btn btn-danger">Delete</a>
-                        </td>
+                        </td>--%>
                         </tr>
 
             </ItemTemplate>

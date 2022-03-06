@@ -43,6 +43,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="#pablo">Trainer Section</a>
+           
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -85,43 +86,83 @@
                         </div>
                       </div>
                     </div>-->
-                    <div class="row">
-                      <div class="col-md-8">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Name <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ControlToValidate="txtName" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtName" runat="server" class="form-control"></asp:TextBox>
+
+                      <asp:Label ID="lblmessage" runat="server" Text="" Visible="false"></asp:Label>
+                   
+                     <div class="row">
+                        
+                            <div class="col-md-6">
+                                 <div class="form-group">
+                             <label runat="server" class="bmd-label-floating">Title</label>
+                                                    <asp:DropDownList runat="server" ID="drpTitle" CssClass="custom-select mr-sm-2">
+
+                                                        <asp:ListItem hidden="true" Text="Select Title"></asp:ListItem>
+                                                        <asp:ListItem Value="Dr"> Dr </asp:ListItem>
+                                                        <asp:ListItem Value="Mr"> Mr </asp:ListItem>
+                                                        <asp:ListItem Value="Mrs"> Mrs</asp:ListItem>
+                                                        <asp:ListItem Value="Miss">Miss</asp:ListItem>
+                                                        
+                                                    </asp:DropDownList>
+                                                    <span class="text-danger">
+                                                        <asp:CustomValidator runat="server" Display="Dynamic" ID="customValidator1"
+                                                            ForeColor="Red" ErrorMessage="" OnServerValidate="customValidator1_ServerValidate">  
+                                                        </asp:CustomValidator> </span>
+                                     </div>
+                                 <div class="form-group">
+                          <label class="bmd-label-floating">First Name <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ControlToValidate="txtFirstName" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <asp:TextBox ID="txtFirstName" runat="server" class="form-control"></asp:TextBox>
                         
                         </div>
                         <div class="form-group">
-                          <label class="bmd-label-floating">Contact No <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="txtContact" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtContact" runat="server" class="form-control" TextMode="Phone"></asp:TextBox>
+                          <label class="bmd-label-floating">Other Names</label>
+                          <asp:TextBox ID="txtOtherName" runat="server" class="form-control"></asp:TextBox>
                        
                         </div>
                          <div class="form-group">
-                          <label class="bmd-label-floating">Email address <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <label class="bmd-label-floating">Last Name(Surname) <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtLastName" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <asp:TextBox ID="txtLastName" runat="server" class="form-control"></asp:TextBox>
+                       
+                        </div>
+
+                           <div class="form-group">
+                          <label class="bmd-label-floating">Email Address<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator></label>
                           <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email"></asp:TextBox>
                        
                         </div>
-                          <br>
-                        <div class="form-group">
+
+                <div class="form-group">
                           <label class="bmd-label-floating">Gender<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ControlToValidate="rbtGender" ForeColor="Red"></asp:RequiredFieldValidator></label>
                           <asp:RadioButtonList ID="rbtGender" runat="server" RepeatDirection="Horizontal">
                               <asp:ListItem>Male</asp:ListItem>
                               <asp:ListItem>Female</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Salary<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="txtSalary" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtSalary" runat="server" class="form-control" TextMode="Number"></asp:TextBox>
+                                </div>
+
+
+
+                       
+                       <div class="col-md-6">
+                             <div class="form-group">
+                          <label class="bmd-label-floating">Address<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ControlToValidate="txtAddress" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <asp:TextBox ID="txtAddress" runat="server" class="form-control" Rows="4" TextMode="MultiLine"></asp:TextBox>
+                       
+                        </div>
+                           
+
+                           <div class="form-group">
+                          <label class="bmd-label-floating">Contact No<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ControlToValidate="txtContact" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <asp:TextBox ID="txtContact" runat="server" class="form-control" TextMode="Number"></asp:TextBox>
                        
                         </div>
                       
-                      
                         <div class="form-group">
-                          <label class="bmd-label-floating">Date Of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtDob" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtDob" runat="server" class="form-control" TextMode="DateTime"></asp:TextBox>
+                          <label class="form-control-label">Date Of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtDob" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <asp:TextBox ID="txtDob" runat="server" class="form-control" TextMode="Date"></asp:TextBox>
                        
                         </div>
+
+                        
 
                         <div class="form-group">
                           <label class="bmd-label-floating">City<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ControlToValidate="txtCity" ForeColor="Red"></asp:RequiredFieldValidator></label>
@@ -129,20 +170,13 @@
                         
                         </div>
 
-                        <div class="form-group">
-                          <label class="bmd-label-floating">State<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ControlToValidate="txtState" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtState" runat="server" class="form-control"></asp:TextBox>
-                        
-                        </div>
-
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Address<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ControlToValidate="txtAddress" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtAddress" runat="server" class="form-control" Rows="4" TextMode="MultiLine"></asp:TextBox>
+                           <div class="form-group">
+                          <label class="bmd-label-floating">Salary<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="txtSalary" ForeColor="Red"></asp:RequiredFieldValidator></label>
+                          <asp:TextBox ID="txtSalary" runat="server" class="form-control" TextMode="Number"></asp:TextBox>
                        
                         </div>
 
                         
-
                          <div class="form-group">
                           <label class="bmd-label-floating">Password<asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ControlToValidate="txtPass" ForeColor="Red"></asp:RequiredFieldValidator></label>
                           <asp:TextBox ID="txtPass" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
@@ -200,7 +234,7 @@
                     
                     <div class="clearfix"></div>
                 
-                </div>
+                
               </div>
             </div>
             <!--<div class="col-md-4">

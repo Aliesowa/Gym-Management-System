@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminApplicationDetails.aspx.cs" Inherits="Gym_Management_System.AdminApplicationDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewMemberDetails.aspx.cs" Inherits="Gym_Management_System.AdminViewMemberDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="Dashboard/assets/img/apple-icon.png"/>
   <link rel="icon" type="image/png" href="Dashboard/assets/img/favicon.png"/>
@@ -400,21 +399,16 @@
                    
                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                              <label class="control-label">Membership Type</label>
-                             
-                            <asp:textbox ID="TxtMemberType" class="form-control" runat="server" ReadOnly="true" ></asp:textbox>
-                       
-                        </div>
-                    </div>
-
-                   <br />
-                    <asp:TextBox  ID="ID" class="form-control" runat="server" Visible="false" ></asp:TextBox>
-                     
-                 <asp:Button ID="btnAdd" runat="server" Text="Accept" class="btn btn-primary" OnCommand="btnAdd_Command" CommandName="Accept" /> &nbsp; &nbsp;
-                 <asp:Button ID="btnReject" runat="server" Text="Decline" class="btn btn-danger offset-6" OnCommand="btnAdd_Command" CommandName="Decline"  />
-                    
+                  
+                    <asp:TextBox  ID="ID" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
+                     <label class="control-label">Password</label>
+                    <asp:TextBox  ID="MemberPassword" class="form-control" runat="server"></asp:TextBox>
+                      <br />
+                     <asp:Button ID="btnAdd" runat="server" Text="Accept" class="btn btn-primary" OnCommand="btnAdd_Command" CommandName="Update" /> &nbsp; &nbsp;
+                 
+                 
+                    <a href="AdminViewMembers.aspx" class="btn btn-btn-secondary"></a>
+                   
                     <div class="clearfix"></div>
                 
                 </div>
@@ -662,7 +656,7 @@
 
 
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content6" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div class="modal" id="ImgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -678,4 +672,8 @@
                     </div>
         </div>
 
+</asp:Content>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

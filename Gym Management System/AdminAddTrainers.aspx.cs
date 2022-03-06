@@ -57,31 +57,31 @@ namespace Gym_Management_System
             {
                 con.Open();
 
-                cmd = new SqlCommand("select * from TblMembers where email = @email", con);
+                SqlCommand cmd1 = new SqlCommand("select * from Members where email = @email", con);
 
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                 cmd1.Parameters.AddWithValue("@email", txtEmail.Text);
 
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                SqlDataAdapter da = new SqlDataAdapter(cmd1);
 
                 DataTable dt = new DataTable();
 
                 da.Fill(dt);
 
-                cmd = new SqlCommand("select * from TblTrainers where email = @email", con);
+                SqlCommand cmd2 = new SqlCommand("select * from Trainers where email = @email", con);
 
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd2.Parameters.AddWithValue("@email", txtEmail.Text);
 
-                SqlDataAdapter da2 = new SqlDataAdapter(cmd);
+                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
 
                 DataTable dt2 = new DataTable();
 
                 da2.Fill(dt2);
 
-                cmd = new SqlCommand("select * from TblAdmin where email = @email", con);
+                SqlCommand cmd3 = new SqlCommand("select * from TblAdmin where email = @email", con);
 
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd3.Parameters.AddWithValue("@email", txtEmail.Text);
 
-                SqlDataAdapter da3 = new SqlDataAdapter(cmd);
+                SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
 
                 DataTable dt3 = new DataTable();
 
@@ -89,27 +89,57 @@ namespace Gym_Management_System
 
                 if (dt.Rows.Count >= 1 || dt2.Rows.Count >= 1 || dt3.Rows.Count >= 1)
                 {
-                    Response.Write("<script>alert('Email Id Already Used..')</script>");
+                    Response.Write("<script>alert('Email Address Already Used..')</script>");
                 }
                 else
                 {
+                    string Genid = null;
 
-                    cmd = new SqlCommand("insert into TblTrainers (name, address, contactno, gender, dob, email, city, state, salary,password,doj) VALUES (@name, @address, @contactno, @gender, @dob, @email, @city, @state, @salary, @password, @doj)", con);
+                    string sqlQuery = "SELECT TOP 1 Trainerid from Trainers order by Trainerid desc";
+                    SqlCommand cmds = new SqlCommand(sqlQuery, con);
+                    SqlDataAdapter das = new SqlDataAdapter(cmds);
 
-                    cmd.Parameters.AddWithValue("@name", txtName.Text);
+                    DataTable dts = new DataTable();
+
+                    da.Fill(dts);
+
+                    if (dt.Rows.Count != 1)
+                    {
+                        Genid = "YANSTR00001";
+                    }
+                    else 
+                    { 
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string input = dr["Trainerid"].ToString();
+                            string angka = input.Substring(input.Length - Math.Min(3, input.Length));
+                            int number = Convert.ToInt32(angka);
+                            number += 1;
+                            string str = number.ToString("D3");
+
+                            Genid = "YANSTR" + str;
+
+                        }
+                }
+                    cmd = new SqlCommand("insert into Trainers (trainerid,title, firstname,othername, lastname, address, contactno, gender, dob, email, city, salary,password,doj) VALUES (@id,@title,@firstname,@othername,@lastname, @address, @contactno, @gender, @dob, @email, @city, @salary, @password, @doj)", con);
+
+                    cmd.Parameters.AddWithValue("@id", Genid);
+                    cmd.Parameters.AddWithValue("@title", drpTitle.Text);
+                    cmd.Parameters.AddWithValue("@firstname", txtFirstName.Text);
+                    cmd.Parameters.AddWithValue("@othername", txtOtherName.Text);
+                    cmd.Parameters.AddWithValue("@lastname", txtLastName.Text);
                     cmd.Parameters.AddWithValue("@address", txtAddress.Text);
                     cmd.Parameters.AddWithValue("@contactno", txtContact.Text);
                     cmd.Parameters.AddWithValue("@gender", rbtGender.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@dob", Convert.ToDateTime(txtDob.Text));
                     cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                     cmd.Parameters.AddWithValue("@city", txtCity.Text);
-                    cmd.Parameters.AddWithValue("@state", txtState.Text);
                     cmd.Parameters.AddWithValue("@doj", DateTime.Now.ToShortDateString());
                     cmd.Parameters.AddWithValue("@salary", Convert.ToInt32(txtSalary.Text));
                     cmd.Parameters.AddWithValue("@password",encryption(txtPass.Text));
                     cmd.ExecuteNonQuery();
 
-                    con.Close();
+                   
 
                     Response.Write("<script>alert('Trainer Inserted Successfully..')</script>");
 
@@ -118,8 +148,22 @@ namespace Gym_Management_System
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('Please Enter Right Information..)</script>");
+                //Response.Write("<script>alert('Please Enter Right Information..)</script>");
+                //Response.Write("<script>alert('ex.Message.ToString()')</script>");
+               lblmessage.Text = ex.Message.ToString();
+                Visible = true;
             }
+            con.Close();
+        }
+
+        protected void customValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (drpTitle.Text == "Select Title")
+            {
+                customValidator1.ErrorMessage = "* Select a Title.";
+                args.IsValid = false;
+            }
+
         }
     }
 }

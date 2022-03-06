@@ -1832,6 +1832,8 @@
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="AdminHomePage.aspx" />
+    <Content Include="AdminViewMemberDetails.aspx" />
+    <Content Include="AdminViewMembersDetails.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.Master.cs">
@@ -2037,6 +2039,20 @@
     </Compile>
     <Compile Include="AdminHomePage.aspx.designer.cs">
       <DependentUpon>AdminHomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminViewMemberDetails.aspx.cs">
+      <DependentUpon>AdminViewMemberDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminViewMemberDetails.aspx.designer.cs">
+      <DependentUpon>AdminViewMemberDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminViewMembersDetails.aspx.cs">
+      <DependentUpon>AdminViewMembersDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminViewMembersDetails.aspx.designer.cs">
+      <DependentUpon>AdminViewMembersDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

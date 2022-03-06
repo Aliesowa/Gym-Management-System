@@ -109,17 +109,7 @@
                               <asp:ListItem>Female</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Height<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="txtHeight" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtHeight" runat="server" class="form-control"></asp:TextBox>
-                       
-                        </div>
-                      
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Weight<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtWeight" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtWeight" runat="server" class="form-control"></asp:TextBox>
-                       
-                        </div>
+                        
                         <div class="form-group">
                           <label class="bmd-label-floating">Date Of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ControlToValidate="txtDob" ForeColor="Red"></asp:RequiredFieldValidator></label>
                           <asp:TextBox ID="txtDob" runat="server" class="form-control"></asp:TextBox>
@@ -132,11 +122,7 @@
                         
                         </div>
 
-                        <div class="form-group">
-                          <label class="bmd-label-floating">State<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ControlToValidate="txtState" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtState" runat="server" class="form-control"></asp:TextBox>
-                        
-                        </div>
+                       
 
                         <div class="form-group">
                           <label class="bmd-label-floating">Address<asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ControlToValidate="txtAddress" ForeColor="Red"></asp:RequiredFieldValidator></label>
@@ -144,55 +130,7 @@
                        
                         </div>
 
-                          <div class="form-group">
-                          <label class="bmd-label-floating">Date Of Join<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ControlToValidate="txtFrom" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtDOJ" runat="server" class="form-control" ReadOnly="True"></asp:TextBox>
                         
-                        </div>
-
-                          <div class="form-group">
-                          <label class="bmd-label-floating">Expire Training Date<asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ErrorMessage="*" ControlToValidate="txtFrom" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtExpireDate" runat="server" class="form-control" ReadOnly="True"></asp:TextBox>
-                        
-                        </div>
-
-                        <div class="form-group">
-                          <label class="bmd-label-floating">From (Enter Time Example: 9:30 PM)<asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ControlToValidate="txtFrom" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtFrom" runat="server" class="form-control" TextMode="DateTime"></asp:TextBox>
-                        
-                        </div>
-
-                         <div class="form-group">
-                          <label class="bmd-label-floating">To ((Enter Time Example: 11:00 PM))<asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="*" ControlToValidate="txtTo" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtTo" runat="server" class="form-control" TextMode="DateTime"></asp:TextBox>
-                        
-                        </div>
-                        
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Number Of Training Month<asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*" ControlToValidate="txtMonth" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtMonth" runat="server" class="form-control" OnTextChanged="txtMonth_TextChanged" TextMode="Number"></asp:TextBox>
-                        
-                        </div>
-
-                        <div class="form-group">
-                          <label class="bmd-label-floating">One Month Fee<asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*" ControlToValidate="txtOneMonthFee" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtOneMonthFee" runat="server" class="form-control" OnTextChanged="txtOneMonthFee_TextChanged" TextMode="Number"></asp:TextBox>
-                        
-                        </div>
-
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Total Fee<asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="*" ControlToValidate="txtTotalFee" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtTotalFee" runat="server" class="form-control" TextMode="Number"></asp:TextBox>
-                        
-                        </div>
-
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Received Fee<asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="*" ControlToValidate="txtReceivedFee" ForeColor="Red"></asp:RequiredFieldValidator></label>
-                          <asp:TextBox ID="txtReceivedFee" runat="server" class="form-control" TextMode="Number"></asp:TextBox>
-                       
-                        </div>
-
-
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label><asp:TextBox ID="txtPass" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                        

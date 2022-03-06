@@ -1,9 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminApplicationDetails.aspx.cs" Inherits="Gym_Management_System.AdminApplicationDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewMembersDetails.aspx.cs" Inherits="Gym_Management_System.AdminViewMembersDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-  <meta charset="utf-8" />
+
+
+
+ <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="Dashboard/assets/img/apple-icon.png"/>
   <link rel="icon" type="image/png" href="Dashboard/assets/img/favicon.png"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -172,7 +175,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label asp-for="txtDOB" class="control-label">Date of Birth</label>
-                              <asp:TextBox ReadOnly="true" runat="server" ID="txtDOB" class="form-control" placeholder="Date of Birth "  />
+                              <asp:TextBox ReadOnly="true"  TextMode="Date" runat="server" ID="txtDOB" class="form-control" />
                    
                             </div>
                         </div>
@@ -392,7 +395,7 @@
                         </div>
 
                          <div class="col-md-2">
-                             <label class="control-label">Application Date</label>
+                             <label class="control-label">Acceptance Date</label>
                              
                             <asp:textbox ID="txtRegDate" class="form-control" runat="server" ReadOnly="true" ></asp:textbox>
                         </div>
@@ -401,10 +404,24 @@
                    </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                               <label class="control-label">Membership Type</label>
                              
                             <asp:textbox ID="TxtMemberType" class="form-control" runat="server" ReadOnly="true" ></asp:textbox>
+                       
+                        </div>
+
+                         <div class="col-md-2">
+                              <label class="control-label">Status</label>
+                             
+                            <asp:textbox ID="txtStatus" class="form-control" runat="server" ReadOnly="true"  ></asp:textbox>
+                       
+                        </div>
+
+                        <div class="col-md-4">
+                              <label class="control-label">Password</label>
+                             
+                            <asp:textbox ID="txtPassword" class="form-control" runat="server" ReadOnly="true"  ></asp:textbox>
                        
                         </div>
                     </div>
@@ -412,8 +429,9 @@
                    <br />
                     <asp:TextBox  ID="ID" class="form-control" runat="server" Visible="false" ></asp:TextBox>
                      
-                 <asp:Button ID="btnAdd" runat="server" Text="Accept" class="btn btn-primary" OnCommand="btnAdd_Command" CommandName="Accept" /> &nbsp; &nbsp;
-                 <asp:Button ID="btnReject" runat="server" Text="Decline" class="btn btn-danger offset-6" OnCommand="btnAdd_Command" CommandName="Decline"  />
+                 <asp:Button ID="btnAdd" runat="server" Text="Edit" class="btn btn-primary" OnCommand="btnAdd_Command" CommandName="Edit" /> &nbsp; &nbsp;
+                 <asp:Button ID="btnReject" runat="server" Text="Delete" class="btn btn-danger offset-6" OnCommand="btnAdd_Command" CommandName="Delete"  />
+                 <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="btn btn-btn-outline-secondary col-md-offset-6" OnClick="btnCancel_Click" />
                     
                     <div class="clearfix"></div>
                 
@@ -674,6 +692,29 @@
  <asp:Label CssClass="modal-title" runat="server" id="myModalLabel" align="center" ></asp:Label>
                         <asp:Image id="img1" runat="server" CssClass="img-fluid" />
                         </div>
+                        </div>
+                    </div>
+        </div>
+
+
+
+    <div class="modal" id="DeleteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           
+                        </div>
+                         <div class="modal-body">
+                             <h4 style="color:red"> <strong> Are you sure you want to Delete?</strong></h4>
+ <asp:Label CssClass="modal-title" runat="server" id="Label1" align="center" ></asp:Label>
+                        <asp:Image id="Image1" runat="server" CssClass="img-fluid" />
+                        </div>
+                        <div> &nbsp; &nbsp;
+                            <asp:Button runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="Delete_Click" />
+                            <asp:Button runat="server" CssClass="btn btn-btn-outline-secondary" Text="Cancel" OnClick="CancelDelete_Click"  />
+                       
+                           </div>
                         </div>
                     </div>
         </div>

@@ -42,7 +42,7 @@
             position: absolute;
             left: 50%;
             margin-right: -50%;
-            transform: translate(-50%)
+            transform: translate(-30%)
         }
     </style>
 </head>
@@ -311,6 +311,27 @@
 
                                         </div>
 
+                                         <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label asp-for="drpMembership" class="control-label">Membership Type</label>
+                                                    <asp:DropDownList runat="server" ID="drpMembership" class="form-control">
+                                                        <asp:ListItem Selected="True" hidden="true">Select Membership Type</asp:ListItem>
+                                                        <asp:ListItem Value="Monthly"> Monthly </asp:ListItem>
+                                                        <asp:ListItem Value="Daily"> Daily</asp:ListItem>
+                                                        <asp:ListItem Value="50yrs Above">50yrs Above</asp:ListItem>
+                                                        <asp:ListItem Value="Under 15">Under 15</asp:ListItem>
+
+                                                    </asp:DropDownList>
+                                                    <span class="text-danger">
+                                                        <asp:CustomValidator runat="server" Display="Dynamic" ID="customValidator4"
+                                                            ErrorMessage="" OnServerValidate="customValidator4_ServerValidate"></asp:CustomValidator>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+
                                         
 
 
@@ -536,14 +557,16 @@
                                             <h3>Acknowledgement And Assumption of Risk</h3>
                                         <div class="col-md-8 offset-2">
                                             <label class="fancy-checkbox">
-
-                                                <asp:CheckBox ID="terms" runat="server"  />
-                                                I accept the <a href="Terms.html">Terms &amp; Agreements</a>
- </label> <br />
-                                          <asp:CustomValidator ID="CustomValidator3" runat="server" 
-        ErrorMessage="Please accept the terms..." 
-        onservervalidate="CustomValidator3_ServerValidate"></asp:CustomValidator>
                                            
+                                              <asp:CheckBox ID="terms" runat="server" Checked="false"  />
+                                                I accept the <a href="Terms.html">Terms &amp; Agreements</a>
+                                                <br />
+                                                <asp:CustomValidator ID="CustomValidator3" runat="server" 
+        ErrorMessage="" Display="Dynamic"
+        onservervalidate="CustomValidator3_ServerValidate"></asp:CustomValidator>
+ </label> 
+                                          
+
                                         </div>
                                         <hr />
                                         <h4><strong>WHERE PARTICIPANT IS UNDER 18 YEARS</strong></h4>

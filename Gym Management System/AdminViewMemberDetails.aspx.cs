@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration.Install;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
-using System.Windows;
 
 namespace Gym_Management_System
 {
-    public partial class AdminApplicationDetails : System.Web.UI.Page
+    public partial class AdminViewMemberDetails : System.Web.UI.Page
     {
+
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyCon"].ConnectionString);
 
         SqlCommand cmd = null;
@@ -35,7 +33,7 @@ namespace Gym_Management_System
             if (!IsPostBack)
             {
                 setData();
-                
+
             }
         }
 
@@ -48,7 +46,7 @@ namespace Gym_Management_System
 
                 con.Open();
 
-                cmd = new SqlCommand("select * from MembershipApplication where Applicationid = @id", con);
+                cmd = new SqlCommand("select * from Members where Memberid = @id", con);
 
 
 
@@ -57,7 +55,7 @@ namespace Gym_Management_System
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                 DataTable dt = new DataTable();
-               
+
 
                 da.Fill(dt);
 
@@ -70,9 +68,9 @@ namespace Gym_Management_System
                         txtotherName.Text = dr["OtherName"].ToString();
                         txtLastName.Text = dr["LastName"].ToString();
                         txtGender.Text = dr["Gender"].ToString();
-                        ID.Text = dr["ApplicationID"].ToString();
+                        ID.Text = dr["memberid"].ToString();
                         ApplicationPic.ImageUrl = dr["PassportPic"].ToString();
-                        
+
                         txtOccupation.Text = dr["Occupation"].ToString();
                         txtMobile.Text = dr["contactno"].ToString();
                         txtMobile2.Text = dr["contactno2"].ToString();
@@ -83,7 +81,7 @@ namespace Gym_Management_System
                         txtCompany.Text = dr["Company"].ToString();
                         txtAddress.Text = dr["Address"].ToString();
                         txtCity.Text = dr["city"].ToString();
-                        txtDOB.Text = Convert.ToDateTime(dr["Dob"]).ToString("yyyy-MM-dd");
+                        txtDOB.Text = dr["Dob"].ToString();
                         txtEmail.Text = dr["email"].ToString();
                         lstInjury.Items.Add(dr["Injury"].ToString());
                         txtPregnant.Text = dr["Pregnant"].ToString();
@@ -104,8 +102,7 @@ namespace Gym_Management_System
                         txtAnything.Text = (dr["Anythingelse"].ToString());
                         txtAnythingWrite.Text = (dr["AnythingWrite"].ToString());
                         txtParentGuardian.Text = (dr["ParentGuardian"].ToString());
-                        txtRegDate.Text = Convert.ToDateTime(dr["RegDate"]).ToString("yyyy-MM-dd");
-                        TxtMemberType.Text = (dr["MembershipType"].ToString());
+                        txtRegDate.Text = (dr["RegDate"].ToString());
 
                     }
                 }
@@ -121,7 +118,7 @@ namespace Gym_Management_System
 
             byte[] encrypt;
 
-            UTF8Encoding encode = new UTF8Encoding();
+            System.Text.UTF8Encoding encode = new UTF8Encoding();
 
             encrypt = md5.ComputeHash(encode.GetBytes(password));
 
@@ -138,11 +135,11 @@ namespace Gym_Management_System
 
         protected void btnAdd_Command(object sender, CommandEventArgs e)
         {
-            if (e.CommandName == "Accept")
+            if (e.CommandName == "Update")
             {
-                savedata();
+                Updatedata();
                 con.Open();
-                cmd = new SqlCommand("Update MembershipApplication set status ='ACCEPTED' where ApplicationId = @id", con);
+                cmd = new SqlCommand("Update Members set status ='ACCEPTED' where ApplicationId = @id", con);
                 cmd.Parameters.AddWithValue("@id", ID.Text);
                 var result = cmd.ExecuteNonQuery();
                 con.Close();
@@ -151,59 +148,20 @@ namespace Gym_Management_System
 
                 Server.Transfer("AdminMembershipApplication.aspx");
             }
-            else if (e.CommandName == "Decline")
-            {
-                con.Open();
-                cmd = new SqlCommand("Update MembershipApplication set status ='REJECTED' where ApplicationId = @id", con);
-                cmd.Parameters.AddWithValue("@id", ID.Text);
-                var result = cmd.ExecuteNonQuery();
-                con.Close();
-                Response.Write("<script>alert('Application Declined')</script>");
-                Server.Transfer("AdminMembershipApplication.aspx");
-            }
+           
         }
 
-        public void savedata()
+        public void Updatedata()
         {
-            string Genid=null;
-            con.Open();
-            string sqlQuery = "SELECT TOP 1 Memberid from members order by memberid desc";
-            SqlCommand cmds = new SqlCommand(sqlQuery, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmds);
-            
-            DataTable dt = new DataTable();
 
-
-            da.Fill(dt);
-
-            if (dt.Rows.Count != 1)
-            {
-                Genid = "YANSMB00001";
-            }
-            else
-                foreach (DataRow dr in dt.Rows)
-                {
-                string input = dr["memberid"].ToString();
-                string angka = input.Substring(input.Length - Math.Min(3, input.Length));
-                int number = Convert.ToInt32(angka);
-                number += 1;
-                string str = number.ToString("D3");
-
-                Genid = "YANSMB" + str;
-                
-            }
-
-            cmd = new SqlCommand("insert into Members(memberid,title,firstname,othername,lastname,address,contactno,contactno2,gender,dob,email,city,occupation,company,doctorname,doctorcontact,emergencyname,emergencycontact,passportpic,status,medicalcondition,injury,pregnant,pregnantweeks,physicalactivity,physicalactivitytype,physicalactivityweeks,surgery,whatsurgery,surgerywhen,smoke,smokelong,smokemany,medication,medicationwhen,medicationwhat,anythingelse,anythingwrite,parentguardian,regdate,Password) VALUES (@memberid, @title, @firstname,@othername,@lastname, @address, @contactno, @contactno2, @gender, @dob, @email,@city,@occupation,@company,@doctorname,@doctorcontact,@emergencyname,@emergencycontact,@passportpic,@status,@medicalcondition,@Injury,@pregnant,@pregnantweeks,@physicalactivity,@physicalactivitytype,@physicalactivityweeks,@surgery,@surgerywhen,@whatsurgery,@smoke,@smokelong,@smokemany,@medication,@medicationwhen,@medicationwhat,@anythingelse,@anythingwrite,@parentguardian,@regdate,@password)", con);
-
-            cmd.Parameters.AddWithValue("@memberid", Genid);
-            cmd.Parameters.AddWithValue("@title", txtTitle.Text.ToString());
+            cmd = new SqlCommand("Update Members set title = @title,firstname =@firstname,othername= @othername,lastname=@lastname,address=@address,contactno=@contactno,contactno2=@contactno2,gender=@gender,dob=@dob,email=@email,city=@city,occupation=@occupation,company=@company,doctorname=@doctorname,doctorcontact=@doctorcontact,emergencyname=@emergencyname,emergencycontact=@emergencycontact,passportpic@=passportpic,status=@status", con);
+            cmd.Parameters.AddWithValue("@title", txtTitle.Text);
             cmd.Parameters.AddWithValue("@firstname", txtFirstName.Text);
             cmd.Parameters.AddWithValue("@othername", txtotherName.Text);
             cmd.Parameters.AddWithValue("@lastname", txtLastName.Text);
             cmd.Parameters.AddWithValue("@contactno", txtMobile2.Text);
             cmd.Parameters.AddWithValue("@contactno2", txtMobile2.Text);
             cmd.Parameters.AddWithValue("@gender", txtGender.Text.ToString());
-            cmd.Parameters.AddWithValue("@membershiptype", TxtMemberType.Text.ToString());
             cmd.Parameters.AddWithValue("@dob", Convert.ToDateTime(txtDOB.Text));
 
             cmd.Parameters.AddWithValue("@email", txtEmail.Text);
@@ -219,31 +177,31 @@ namespace Gym_Management_System
             cmd.Parameters.AddWithValue("@status", "ACCEPTED");
 
 
-            cmd.Parameters.AddWithValue("@medicalcondition", lstDisease.Text);
+            //cmd.Parameters.AddWithValue("@medicalcondition", lstDisease.Text);
 
-            cmd.Parameters.AddWithValue("@injury", lstInjury.Text);
+            //cmd.Parameters.AddWithValue("@injury", lstInjury.Text);
 
-            cmd.Parameters.AddWithValue("@pregnant", txtPregnant.Text);
-            cmd.Parameters.AddWithValue("@pregnantweeks", txtPregnantWeeks.Text);
-            cmd.Parameters.AddWithValue("@physicalactivity", txtPhysical.Text);
-            cmd.Parameters.AddWithValue("@physicalactivityweeks", txtPhysicalActivityWeeks.Text);
-            cmd.Parameters.AddWithValue("@physicalactivitytype", txtPhysicalType.Text);
-            cmd.Parameters.AddWithValue("@surgery", txtSurgery.Text);
-            cmd.Parameters.AddWithValue("@whatsurgery", txtWhatSurgery.Text);
-            cmd.Parameters.AddWithValue("@surgerywhen", txtWhenSurgery.Text);
-            cmd.Parameters.AddWithValue("@smoke", txtSmoke.Text);
-            cmd.Parameters.AddWithValue("@smokelong", txtSmokeLong.Text);
-            cmd.Parameters.AddWithValue("@smokemany", txtSmokeMany.Text);
-            cmd.Parameters.AddWithValue("@medication", txtMedication.Text);
-            cmd.Parameters.AddWithValue("@medicationwhen", txtWhenMedication.Text);
-            cmd.Parameters.AddWithValue("@medicationwhat", txtWhatMedication.Text);
-            cmd.Parameters.AddWithValue("@anythingelse", txtAnything.Text);
-            cmd.Parameters.AddWithValue("@anythingwrite", txtAnythingWrite.Text);
+            //cmd.Parameters.AddWithValue("@pregnant", txtPregnant.Text);
+            //cmd.Parameters.AddWithValue("@pregnantweeks", txtPregnantWeeks.Text);
+            //cmd.Parameters.AddWithValue("@physicalactivity", txtPhysical.Text);
+            //cmd.Parameters.AddWithValue("@physicalactivityweeks", txtPhysicalActivityWeeks.Text);
+            //cmd.Parameters.AddWithValue("@physicalactivitytype", txtPhysicalType.Text);
+            //cmd.Parameters.AddWithValue("@surgery", txtSurgery.Text);
+            //cmd.Parameters.AddWithValue("@whatsurgery", txtWhatSurgery.Text);
+            //cmd.Parameters.AddWithValue("@surgerywhen", txtWhenSurgery.Text);
+            //cmd.Parameters.AddWithValue("@smoke", txtSmoke.Text);
+            //cmd.Parameters.AddWithValue("@smokelong", txtSmokeLong.Text);
+            //cmd.Parameters.AddWithValue("@smokemany", txtSmokeMany.Text);
+            //cmd.Parameters.AddWithValue("@medication", txtMedication.Text);
+            //cmd.Parameters.AddWithValue("@medicationwhen", txtWhenMedication.Text);
+            //cmd.Parameters.AddWithValue("@medicationwhat", txtWhatMedication.Text);
+            //cmd.Parameters.AddWithValue("@anythingelse", txtAnything.Text);
+            //cmd.Parameters.AddWithValue("@anythingwrite", txtAnythingWrite.Text);
 
-            cmd.Parameters.AddWithValue("@parentguardian", txtParentGuardian.Text);
-            cmd.Parameters.AddWithValue("@regdate", DateTime.Now.Date);
+            //cmd.Parameters.AddWithValue("@parentguardian", txtParentGuardian.Text);
+            //cmd.Parameters.AddWithValue("@regdate", DateTime.Now.Date);
             //cmd.Parameters.AddWithValue("@expiredate", DateTime.Now.Date.AddMonths(Convert.ToInt32(txtMonth.Text)).ToShortDateString());
-            cmd.Parameters.AddWithValue("@password", encryption(Genid));
+            cmd.Parameters.AddWithValue("@password", encryption(MemberPassword.Text));
 
             cmd.ExecuteNonQuery();
             con.Close();
@@ -261,7 +219,8 @@ namespace Gym_Management_System
             string fullname = txtFirstName.Text + " " + txtotherName.Text + " " + txtLastName.Text;
             myModalLabel.Text = fullname;
             Page.ClientScript.RegisterStartupScript(GetType(), "modelBox", "$('#ImgModal').modal('show');", true);
-        
-    }
+
+        }
     }
 }
+ 

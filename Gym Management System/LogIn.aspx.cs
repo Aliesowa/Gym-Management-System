@@ -99,7 +99,7 @@ namespace Gym_Management_System
             }
             else
             {
-                cmd = new SqlCommand("select * from TblTrainers where email = @email and password = @pass", con);
+                cmd = new SqlCommand("select * from Trainers where email = @email and password = @pass", con);
 
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
 

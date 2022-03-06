@@ -65,73 +65,34 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-table-striped table-bordered">
                       <thead class=" text-primary">
                         <th>
                           Id
                         </th>
+                           <th>
+                         Title
+                        </th>
                         <th>
-                          Name
+                          First Name
+                        </th>
+                        <th>
+                          Other Names
+                        </th>
+                        <th>
+                          Last Name
                         </th>
                         <th>
                           Contact No
                         </th>
                         <th>
-                          Email Id
+                         Email
                         </th>
+                       
+                        
+                     
                         <th>
-                          Gender
-                        </th>
-                        <th>
-                          Height
-                        </th>
-                        <th>
-                          Weight
-                        </th>
-                        <th>
-                         Date Of Birth
-                        </th>
-                         <th>
-                         From
-                        </th>
-                        <th>
-                        To
-                        </th>
-                         <th>
-                         Date Of Join
-                        </th>
-                        <th>
-                        Expire Date
-                        </th>
-                         <th>
-                         Number Of Month
-                        </th>
-                         <th>
-                         One Month Fee
-                        </th>
-                         <th>
-                         Total Fee
-                        </th>
-                         <th>
-                         Received Fee
-                        </th>
-                          <th>
-                              Remaining Fee
-                            </th>
-                         <th>
-                          Address
-                        </th>
-                        <th>
-                         City
-                        </th>
-                          <th>
-                         State
-                        </th>
-                        <th>
-                          Update
-                        </th>
-                        <th>
-                          Delete
+                         
                         </th>
                       </thead>
                       <tbody>
@@ -144,18 +105,27 @@
 
                         <tr>
                           <td>
-                            <%#Eval("memberid") %>
+                            <%#Eval("Memberid") %>
                           </td>
                           <td>
+                            <%#Eval("Title") %>
+                          </td>
+                            <td>
                             <%#Eval("FirstName") %>
+                          </td>
+                            <td>
+                            <%#Eval("OtherName") %>
+                          </td>
+                            <td>
+                            <%#Eval("LastName") %>
                           </td>
                           <td>
                             <%#Eval("contactno") %>
                           </td>
                           <td>
-                            <%#Eval("email") %>
+                            <%#Eval("Email") %>
                           </td>
-                          <td>
+                          <%--<td>
                             <%#Eval("gender") %>
                           </td>
                           <td>
@@ -195,11 +165,11 @@
                           </td>
                             <td>
                                 <%# Eval("remainingfee") %>
-                            </td>
+                            </td>--%>
 
 
 
-                         <td>
+                        <%-- <td>
                             <%#Eval("address") %>
                           </td>
                           <td>
@@ -210,9 +180,9 @@
                           </td>
                         <td>
                             <a href="AdminUpdateMember.aspx?id=<%#Eval("memberid") %>" class="btn btn-primary">Update</a>
-                        </td>
+                        </td>--%>
                         <td>
-                            <a href="AdminDelete.aspx?type=Member&id=<%#Eval("memberid") %>" class="btn btn-danger">Delete</a>
+                            <a href="AdminViewMembersDetails.aspx?id=<%#Eval("memberid") %>" class="btn btn-Secondary">More Details</a>
                         </td>
                         </tr>
 

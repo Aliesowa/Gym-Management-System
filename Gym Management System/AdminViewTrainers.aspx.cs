@@ -30,7 +30,7 @@ namespace Gym_Management_System
         {
             con.Open();
 
-            SqlDataAdapter da = new SqlDataAdapter("select *,CONVERT(VARCHAR(10), dob, 105) as d from TblTrainers", con);
+            SqlDataAdapter da = new SqlDataAdapter("select *,CONVERT(VARCHAR(10), dob, 105) as d from Trainers", con);
 
             DataTable dt = new DataTable();
 

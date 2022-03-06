@@ -24,20 +24,20 @@ namespace Gym_Management_System
                 Response.Redirect("LogIn.aspx");
             }
 
-        
+            getUser("select * from ViewMembers");
 
-           if (Request.QueryString["type"] == "remaining")
-           {
-               getUser("select *,CONVERT(VARCHAR(10), dob, 105) as d,(totalfee - receivedfee) as remainingfee from TblMembers where (totalfee - receivedfee) != 0");
-           }
-           else if(Request.QueryString["type"] == "expired")
-           {
-               getUser("select *,CONVERT(VARCHAR(10), dob, 105) as d,(totalfee - receivedfee) as remainingfee from TblMembers where DATEDIFF(day,CONVERT(date, CONVERT(VARCHAR(10), getdate(), 103), 103),CONVERT(date, expiredate, 103)) <= 0");
-           }
-           else
-           {
-               getUser("select *,CONVERT(VARCHAR(10), dob, 105) as d,(totalfee - receivedfee) as remainingfee from TblMembers");
-           }
+           //if (Request.QueryString["type"] == "remaining")
+           //{
+           //    getUser("select *,CONVERT(VARCHAR(10), dob, 105) as d,(totalfee - receivedfee) as remainingfee from TblMembers where (totalfee - receivedfee) != 0");
+           //}
+           //else if(Request.QueryString["type"] == "expired")
+           //{
+           //    getUser("select *,CONVERT(VARCHAR(10), dob, 105) as d,(totalfee - receivedfee) as remainingfee from TblMembers where DATEDIFF(day,CONVERT(date, CONVERT(VARCHAR(10), getdate(), 103), 103),CONVERT(date, expiredate, 103)) <= 0");
+           //}
+           //else
+           //{
+           //    getUser("select *,CONVERT(VARCHAR(10), dob, 105) as d,(totalfee - receivedfee) as remainingfee from TblMembers");
+           //}
 
 
           

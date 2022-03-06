@@ -93,21 +93,21 @@ namespace Gym_Management_System
                             rbtGender.SelectedValue = "Female";
                         }
 
-                        txtHeight.Text = dr["height"].ToString();
-                        txtWeight.Text = dr["weight"].ToString();
-                        txtDob.Text = dr["dob"].ToString();
-                        txtCity.Text = dr["city"].ToString();
-                        txtState.Text = dr["state"].ToString();
-                        txtAddress.Text = dr["address"].ToString();
-                        txtMonth.Text = dr["month"].ToString();
-                        txtOneMonthFee.Text = dr["onemonthfee"].ToString();
-                        txtTotalFee.Text = dr["totalfee"].ToString();
-                        txtReceivedFee.Text = dr["receivedfee"].ToString();
-                        txtPass.Text = dr["password"].ToString();
-                        txtFrom.Text = dr["fromtime"].ToString();
-                        txtDOJ.Text = dr["doj"].ToString();
-                        txtExpireDate.Text = dr["expiredate"].ToString();
-                        txtTo.Text = dr["totime"].ToString();
+                        //txtHeight.Text = dr["height"].ToString();
+                        //txtWeight.Text = dr["weight"].ToString();
+                        //txtDob.Text = dr["dob"].ToString();
+                        //txtCity.Text = dr["city"].ToString();
+                        //txtState.Text = dr["state"].ToString();
+                        //txtAddress.Text = dr["address"].ToString();
+                        //txtMonth.Text = dr["month"].ToString();
+                        //txtOneMonthFee.Text = dr["onemonthfee"].ToString();
+                        //txtTotalFee.Text = dr["totalfee"].ToString();
+                        //txtReceivedFee.Text = dr["receivedfee"].ToString();
+                        //txtPass.Text = dr["password"].ToString();
+                        //txtFrom.Text = dr["fromtime"].ToString();
+                        //txtDOJ.Text = dr["doj"].ToString();
+                        //txtExpireDate.Text = dr["expiredate"].ToString();
+                        //txtTo.Text = dr["totime"].ToString();
                     }
                 }
 
@@ -129,24 +129,24 @@ namespace Gym_Management_System
                 cmd.Parameters.AddWithValue("@password",encryption(txtPass.Text));
             }
 
-            cmd.Parameters.AddWithValue("@name", txtName.Text);
-            cmd.Parameters.AddWithValue("@address", txtAddress.Text);
-            cmd.Parameters.AddWithValue("@contactno", txtContact.Text);
-            cmd.Parameters.AddWithValue("@gender", rbtGender.SelectedItem.ToString());
-            cmd.Parameters.AddWithValue("@dob", Convert.ToDateTime(txtDob.Text));
-            cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@city", txtCity.Text);
-            cmd.Parameters.AddWithValue("@state", txtState.Text);
-            cmd.Parameters.AddWithValue("@height", Convert.ToDecimal(txtHeight.Text));
-            cmd.Parameters.AddWithValue("@weight", Convert.ToDecimal(txtWeight.Text));
-            cmd.Parameters.AddWithValue("@month", Convert.ToInt32(txtMonth.Text));
-            cmd.Parameters.AddWithValue("@onemonthfee", Convert.ToInt32(txtOneMonthFee.Text));
-            cmd.Parameters.AddWithValue("@totalfee", Convert.ToInt32(txtTotalFee.Text));
-            cmd.Parameters.AddWithValue("@receivedfee", Convert.ToInt32(txtReceivedFee.Text));
-            cmd.Parameters.AddWithValue("@fromtime", txtFrom.Text);
-            cmd.Parameters.AddWithValue("@totime", txtTo.Text);
-            cmd.Parameters.AddWithValue("@expiredate", Convert.ToDateTime(txtDOJ.Text).AddMonths(Convert.ToInt32(txtMonth.Text)).ToShortDateString());
-            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Request.QueryString["id"]));
+            //cmd.Parameters.AddWithValue("@name", txtName.Text);
+            //cmd.Parameters.AddWithValue("@address", txtAddress.Text);
+            //cmd.Parameters.AddWithValue("@contactno", txtContact.Text);
+            //cmd.Parameters.AddWithValue("@gender", rbtGender.SelectedItem.ToString());
+            //cmd.Parameters.AddWithValue("@dob", Convert.ToDateTime(txtDob.Text));
+            //cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+            //cmd.Parameters.AddWithValue("@city", txtCity.Text);
+            //cmd.Parameters.AddWithValue("@state", txtState.Text);
+            //cmd.Parameters.AddWithValue("@height", Convert.ToDecimal(txtHeight.Text));
+            //cmd.Parameters.AddWithValue("@weight", Convert.ToDecimal(txtWeight.Text));
+            //cmd.Parameters.AddWithValue("@month", Convert.ToInt32(txtMonth.Text));
+            //cmd.Parameters.AddWithValue("@onemonthfee", Convert.ToInt32(txtOneMonthFee.Text));
+            //cmd.Parameters.AddWithValue("@totalfee", Convert.ToInt32(txtTotalFee.Text));
+            //cmd.Parameters.AddWithValue("@receivedfee", Convert.ToInt32(txtReceivedFee.Text));
+            //cmd.Parameters.AddWithValue("@fromtime", txtFrom.Text);
+            //cmd.Parameters.AddWithValue("@totime", txtTo.Text);
+            //cmd.Parameters.AddWithValue("@expiredate", Convert.ToDateTime(txtDOJ.Text).AddMonths(Convert.ToInt32(txtMonth.Text)).ToShortDateString());
+            //cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Request.QueryString["id"]));
 
             cmd.ExecuteNonQuery();
 
@@ -161,7 +161,7 @@ namespace Gym_Management_System
         {
             try
             {
-                txtTotalFee.Text = (Convert.ToInt32(txtMonth.Text) * Convert.ToInt32(txtOneMonthFee.Text)).ToString();
+            //    txtTotalFee.Text = (Convert.ToInt32(txtMonth.Text) * Convert.ToInt32(txtOneMonthFee.Text)).ToString();
             }
             catch (Exception ex)
             {
@@ -173,8 +173,8 @@ namespace Gym_Management_System
         {
             try
             {
-                txtTotalFee.Text = (Convert.ToInt32(txtMonth.Text) * Convert.ToInt32(txtOneMonthFee.Text)).ToString();
-            }
+            //    txtTotalFee.Text = (Convert.ToInt32(txtMonth.Text) * Convert.ToInt32(txtOneMonthFee.Text)).ToString();
+           }
             catch (Exception ex)
             {
 
